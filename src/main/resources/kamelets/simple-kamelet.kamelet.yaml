@@ -1,0 +1,24 @@
+apiVersion: camel.apache.org/v1alpha1
+kind: Kamelet
+metadata:
+  name: simple-kamelet
+spec:
+  definition:
+    title: "Simple Kamelet"
+    description: "A simple Kamelet example"
+    type: object
+    properties:
+      message:
+        title: "Message"
+        description: "The message to log"
+        type: string
+        default: "Hello from Kamelet!"
+  template:
+    from:
+      uri: timer:trigger
+      parameters:
+        period: 1000
+      steps:
+        - set-body:
+            simple: "{{message}}"
+        - to: log:info

@@ -1,0 +1,4 @@
+- from:
+    uri: kamelet:simple-kamelet
+    steps:
+      - to: log:info
